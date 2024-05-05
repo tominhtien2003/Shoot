@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bullet
   - GameOver
+  - Bullet1
   layers:
   - Default
   - TransparentFX
