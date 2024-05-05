@@ -9,9 +9,15 @@ public class HealthPlayer : MonoBehaviour, IHealth
     [SerializeField] private Image healthTotalUI;
 
     [SerializeField] private int numberOfFlash = 3;
-    [SerializeField] private float immortalTime = 2f;
+    [SerializeField] private float immortalDuration = 2f;
 
     private float healthCurrent;
+    private bool isImmortal;
+    private SpriteRenderer spriteRenderer;
+    private void Awake()
+    {
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+    }
 
     private void Start()
     {
@@ -20,8 +26,13 @@ public class HealthPlayer : MonoBehaviour, IHealth
     }
     public void TakeDamage()
     {
+        if (isImmortal)
+        {
+            return;
+        }
         if (healthCurrent > 0)
         {
+            StartCoroutine(TimeImmortal());
             healthCurrent -= damage;
             healthTotalUI.fillAmount = healthCurrent / 10f;
         }
@@ -37,8 +48,19 @@ public class HealthPlayer : MonoBehaviour, IHealth
             TakeDamage();
         }
     }
-    private IEnumerator Immortal()
+    private IEnumerator TimeImmortal()
     {
-        yield return new WaitForSeconds(immortalTime);
+        isImmortal = true;
+        Physics2D.IgnoreLayerCollision(6, 7, true);// Bo qua va cham
+        for (int i = 0; i < numberOfFlash; i++)
+        {
+            spriteRenderer.color = new Color(0, .5f, 0, .5f);
+            yield return new WaitForSeconds(immortalDuration / (numberOfFlash * 2));
+            spriteRenderer.color = new Color(1, 1, 1, .5f);
+            yield return new WaitForSeconds(immortalDuration / (numberOfFlash * 2));
+        }
+        spriteRenderer.color = Color.white;
+        Physics2D.IgnoreLayerCollision(6, 7, false);
+        isImmortal = false;
     }
 }
