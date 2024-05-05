@@ -12,7 +12,7 @@ public class SpawnEnemy : MonoBehaviour
     private void Start()
     {
         enemyFactory = GameObject.Find("EnemyFactor").GetComponent<EnemyFactory>();
-        InvokeRepeating("SpawnEnemy_", 0f, timeBetweenSpawnEnemy);
+        InvokeRepeating("SpawnEnemy_", 0f, Random.Range(0.3f, timeBetweenSpawnEnemy));
     }
 
     private void SpawnEnemy_()

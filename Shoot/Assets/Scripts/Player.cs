@@ -15,11 +15,11 @@ public class Player : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            /*DontDestroyOnLoad(gameObject);*/
         }
         else
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
         rb = GetComponent<Rigidbody2D>();
     }

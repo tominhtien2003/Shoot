@@ -24,6 +24,7 @@ public class ObjectPooler : MonoBehaviour
                 Transform obj = Instantiate(pool.prefab);
                 obj.gameObject.SetActive(false);
                 queue.Enqueue(obj);
+                obj.SetParent(GameManager.instance.transform);
             }
             objectPoolDictionary.Add(pool.tag, queue);
         }

@@ -5,6 +5,8 @@ public class EnemyType1 : MonoBehaviour, IEnemy
     [SerializeField] private float speed;
     [SerializeField] private LayerMask playerMask;
 
+    private float timeLife = 0f;
+
     private CircleCollider2D circleCollider;
     private void Awake()
     {
@@ -12,6 +14,11 @@ public class EnemyType1 : MonoBehaviour, IEnemy
     }
     private void Update()
     {
+        timeLife += Time.deltaTime;
+        if (timeLife > 10f)
+        {
+            Destroy(gameObject);
+        }
         HandleMovement();
         HandleAttack();
     }
@@ -20,6 +27,7 @@ public class EnemyType1 : MonoBehaviour, IEnemy
         bool checkPlayer = Physics2D.OverlapCircle(circleCollider.bounds.center, circleCollider.radius, playerMask);
         if (checkPlayer)
         {
+
             Player.instance.GetComponent<IHealth>().TakeDamage();
         }
     }
@@ -27,5 +35,9 @@ public class EnemyType1 : MonoBehaviour, IEnemy
     public void HandleMovement()
     {
         transform.position += new Vector3(0f, -speed * Time.deltaTime, 0f);
+    }
+    private void OnDestroy()
+    {
+        ScorePlayer.score++;
     }
 }

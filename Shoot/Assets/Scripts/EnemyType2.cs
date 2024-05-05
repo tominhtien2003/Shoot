@@ -28,4 +28,8 @@ public class EnemyType2 : MonoBehaviour, IEnemy
     {
         transform.position += new Vector3(0f, -speed * Time.deltaTime, 0f);
     }
+    private void OnDestroy()
+    {
+        ScorePlayer.score++;
+    }
 }

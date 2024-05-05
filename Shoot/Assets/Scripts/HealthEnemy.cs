@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthEnemy : MonoBehaviour
+public class HealthEnemy : MonoBehaviour , IHealth
 {
     [SerializeField] private float damage;
     [SerializeField] private float healthTotal;
@@ -28,17 +28,7 @@ public class HealthEnemy : MonoBehaviour
             TakeDamage();
         }
     }
-    private void TakeDamage()
-    {
-        if (healthCurrent > 0)
-        {
-            healthCurrent -= damage;
-            if (healthCurrent <= 0)
-            {
-                StartCoroutine(TimeDownDestroy());
-            }
-        }
-    }
+    
     private IEnumerator TimeDownDestroy()
     {
         animator.SetTrigger("Explode");
@@ -58,4 +48,15 @@ public class HealthEnemy : MonoBehaviour
         return _collider != null;
     }
 
+    public void TakeDamage()
+    {
+        if (healthCurrent > 0)
+        {
+            healthCurrent -= damage;
+            if (healthCurrent <= 0)
+            {
+                StartCoroutine(TimeDownDestroy());
+            }
+        }
+    }
 }

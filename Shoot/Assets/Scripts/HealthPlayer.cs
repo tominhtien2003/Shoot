@@ -1,15 +1,18 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HealthPlayer : MonoBehaviour, IHealth
 {
+
     [SerializeField] private float damage;
     [SerializeField] private float healthTotal;
     [SerializeField] private Image healthTotalUI;
 
     [SerializeField] private int numberOfFlash = 3;
     [SerializeField] private float immortalDuration = 2f;
+    [SerializeField] private GameObject gameOver;
 
     private float healthCurrent;
     private bool isImmortal;
@@ -38,8 +41,15 @@ public class HealthPlayer : MonoBehaviour, IHealth
         }
         else
         {
-
+            StartCoroutine(PlayerDeath());
         }
+    }
+    private IEnumerator PlayerDeath()
+    {
+        Player.instance.GetComponent<Animator>().SetTrigger("Death");
+        yield return new WaitForSeconds(.3f);
+        Destroy(gameObject);
+        gameOver.SetActive(true);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
