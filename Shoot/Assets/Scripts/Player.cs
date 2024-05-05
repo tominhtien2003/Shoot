@@ -40,18 +40,7 @@ public class Player : MonoBehaviour
         float inputHor = Input.GetAxisRaw("Horizontal");
         float inputVer = Input.GetAxisRaw("Vertical");
         //Debug.Log(inputHor + " " + inputVer);
-        if (inputHor != 0f)
-        {
-            rb.velocity = new Vector2(inputHor * speed, rb.velocity.y);
-        }
-        if (inputVer != 0f)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, inputVer * speed);
-        }
-        if (inputHor == 0f && inputVer == 0f)
-        {
-            rb.velocity = Vector2.zero;
-        }
+        rb.MovePosition(rb.position + new Vector2(inputHor, inputVer) * speed * Time.fixedDeltaTime);
 
     }
 }
