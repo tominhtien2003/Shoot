@@ -15,7 +15,7 @@ public class EnemyType1 : MonoBehaviour, IEnemy
     private void Update()
     {
         timeLife += Time.deltaTime;
-        if (timeLife > 10f)
+        if (timeLife > 7f)
         {
             Destroy(gameObject);
         }
@@ -38,6 +38,6 @@ public class EnemyType1 : MonoBehaviour, IEnemy
     }
     private void OnDestroy()
     {
-        ScorePlayer.score++;
+        
     }
 }

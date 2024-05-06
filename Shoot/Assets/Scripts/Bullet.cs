@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
 
     [SerializeField] private float speed;
     [SerializeField] private float timeLife;
+    [SerializeField] private float distanceMax = 5.2f;
     [SerializeField] private LayerMask enemyMask;
 
     private Animator animator;
@@ -18,6 +19,10 @@ public class Bullet : MonoBehaviour
     {
         HandleMovement();
         StartCoroutine(TimeLife());
+        if (transform.position.y >= distanceMax)
+        {
+            DeActivate();
+        }
     }
     private void HandleMovement()
     {

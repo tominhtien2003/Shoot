@@ -30,6 +30,6 @@ public class EnemyType2 : MonoBehaviour, IEnemy
     }
     private void OnDestroy()
     {
-        ScorePlayer.score++;
+        
     }
 }

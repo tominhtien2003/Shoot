@@ -6049,7 +6049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 425c46a1a7f570e45be83737324e0159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
+  speed: 10
   attackCooldown: 0.1
   pointHoldBullet: {fileID: 1804748376}
 --- !u!50 &1241582770

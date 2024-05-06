@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   timeLife: 0.8
+  distanceMax: 4.9
   enemyMask:
     serializedVersion: 2
     m_Bits: 128
