@@ -56,6 +56,8 @@ public class HealthEnemy : MonoBehaviour , IHealth
             healthCurrent -= damage;
             if (healthCurrent <= 0)
             {
+                AudioManager audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+                audioManager.PlaySFX("Explode");
                 StartCoroutine(TimeDownDestroy());
             }
         }
