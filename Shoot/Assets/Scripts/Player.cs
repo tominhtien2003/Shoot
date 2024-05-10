@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform pointHoldBullet;
 
     private Rigidbody2D rb;
+    private string tagBullet = "Bullet"; 
     private void Awake()
     {
         if (instance == null)
@@ -33,7 +34,7 @@ public class Player : MonoBehaviour
     }
     private void HandleAttack()
     {
-        GameManager.instance.objectPooler.SpawnObject("Bullet", pointHoldBullet.position, pointHoldBullet.rotation);
+        GameManager.instance.objectPooler.SpawnObject(tagBullet, pointHoldBullet.position, pointHoldBullet.rotation);
     }
     private void HandleMovement()
     {
