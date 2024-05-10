@@ -44,4 +44,18 @@ public class Player : MonoBehaviour
         rb.MovePosition(rb.position + new Vector2(inputHor, inputVer) * speed * Time.fixedDeltaTime);
 
     }
+    public void ChangeBullet()
+    {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            StartCoroutine(TimeChangeBullet());
+        }
+    }
+    private IEnumerator TimeChangeBullet()
+    {
+        transform.GetComponent<ScorePlayer>().slider.value = 0f;
+        tagBullet = "Bullet1";
+        yield return new WaitForSeconds(30f);
+        tagBullet = "Bullet";
+    }
 }

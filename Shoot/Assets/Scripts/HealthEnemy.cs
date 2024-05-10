@@ -35,7 +35,9 @@ public class HealthEnemy : MonoBehaviour , IHealth
         Physics2D.IgnoreLayerCollision(7, 8);
         yield return new WaitForSeconds(.25f);
         Destroy(gameObject);
-        ScorePlayer.score++;
+        if (Player.instance!=null) {
+            Player.instance.GetComponent<ScorePlayer>().AddScore();
+        }
     }
     private bool DetectCollision()
     {
