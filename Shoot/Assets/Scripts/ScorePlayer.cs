@@ -15,7 +15,7 @@ public class ScorePlayer : MonoBehaviour
     {
         ++score;
         _text.text = score.ToString();
-        if (slider.value <1f) slider.value += .02f;
+        if (slider.value <1f) slider.value += .005f;
         if (slider.value == 1f)
         {
             Player.instance.ChangeBullet();

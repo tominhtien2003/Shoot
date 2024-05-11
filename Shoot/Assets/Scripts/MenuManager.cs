@@ -7,5 +7,9 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("Main");
     }
-
+    public void Quit()
+    {
+        Debug.Log("Quit button was pressed!");
+        Application.Quit();
+    }
 }

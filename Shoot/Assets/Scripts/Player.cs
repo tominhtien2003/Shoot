@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
     {
         transform.GetComponent<ScorePlayer>().slider.value = 0f;
         tagBullet = "Bullet1";
-        yield return new WaitForSeconds(30f);
+        yield return new WaitForSeconds(20f);
         tagBullet = "Bullet";
     }
 }
